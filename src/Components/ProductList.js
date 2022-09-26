@@ -1,15 +1,16 @@
 import React from 'react'
 import { BsFillEmojiSmileFill, BsCartFill } from "react-icons/bs";
 import { ImSad2 } from "react-icons/im";
+import {Link} from 'react-router-dom'
 
 const ProductList = ({ prod_image, name, color, stock, price }) => {
     return (
         <tbody className='text-center'>
-            <tr>
+            <tr >
                 <th scope='row'>
                     <img className='image-data' src={prod_image} alt="pics.jpeg" />
                 </th>
-                <th ><a className='text-info' href="#">{name}</a></th>
+                <th ><Link className='text-info' to="#">{name}</Link></th>
                 <th className='text-info'>{color}</th>
                 <th className={`text-${(stock === 'yes') ? 'success' : 'danger'}`}>{stock === 'yes' ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock === 'yes' ? 'In Stock' : 'Out Of Stock'}</th>
                 <th >{price}</th>
