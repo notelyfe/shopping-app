@@ -13,6 +13,7 @@
 
 .delete{
     font-size: 1.7rem;
+    border: none;
 }
 .prod-pic{
     width: 65px;
@@ -60,4 +61,12 @@
     align-items: center;
     height: 85px;
     font-size: 20px;
+}
+
+.cart-amount-total{
+    max-width: 300px;
+    border: 2px solid grey;
+}
+.btn-add{
+    width: 100%;
 }
