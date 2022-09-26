@@ -1,0 +1,30 @@
+.product-listing{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin: auto;
+}
+
+.filter-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-add{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.input-width{
+    max-width: 35%;
+}
+.input-width::placeholder{
+    text-align: center;
+}
+.select-width{
+    max-width: 25%;
+}

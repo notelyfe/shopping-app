@@ -1,0 +1,122 @@
+[
+    {
+        "id": "1",
+        "name": "Woo Ninja",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic1.jpeg"
+    },
+    {
+        "id": "2",
+        "name": "Woo Logo",
+        "color": "black",
+        "stock": "no",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic2.jpeg"
+    },
+    {
+        "id": "3",
+        "name": "Patient Ninja",
+        "color": "black",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic3.jpeg"
+    },
+    {
+        "id": "4",
+        "name": "Ninja Sihouette",
+        "color": "black",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic4.jpeg"
+    },
+    {
+        "id": "5",
+        "name": "Ninja Sihouette",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic5.jpeg"
+    },
+    {
+        "id": "6",
+        "name": "Slim Fit Dress Shirt",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹30.00",
+        "prod_photo": "./Components/images/pic6.jpeg"
+    },
+    {
+        "id": "7",
+        "name": "Short Sleeve T-Shirt",
+        "color": "pink",
+        "stock": "yes",
+        "price": "₹50.00",
+        "prod_photo": "./Components/images/pic7.jpeg"
+    },
+    {
+        "id": "8",
+        "name": "Ninja woo",
+        "color": "pink",
+        "stock": "no",
+        "price": "₹21.00",
+        "prod_photo": "./Components/images/pic8.jpeg"
+    },
+    {
+        "id": "9",
+        "name": "Ninja Sihouette",
+        "color": "pink",
+        "stock": "yes",
+        "price": "₹40.00",
+        "prod_photo": "./Components/images/pic9.jpeg"
+    },
+    {
+        "id": "10",
+        "name": "Ninja Sihouette",
+        "color": "white",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic10.jpeg"
+    },
+    {
+        "id": "11",
+        "name": "Ninja Sihouette",
+        "color": "white",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic11.jpeg"
+    },
+    {
+        "id": "12",
+        "name": "Ninja Sihouette",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic12.jpeg"
+    },
+    {
+        "id": "13",
+        "name": "Ninja Sihouette",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic13.jpeg"
+    },
+    {
+        "id": "14",
+        "name": "Ninja Sihouette",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic14.jpeg"
+    },
+    {
+        "id": "15",
+        "name": "Ninja Sihouette",
+        "color": "blue",
+        "stock": "yes",
+        "price": "₹35.00",
+        "prod_photo": "./Components/images/pic15.jpeg"
+    }
+]

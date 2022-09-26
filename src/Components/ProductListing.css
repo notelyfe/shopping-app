@@ -1,0 +1,39 @@
+.uparrow{
+    position: relative;
+    right: -12px;
+    top: -7px
+}
+
+.downarrow{
+    position: relative;
+    right: 4px;
+    top: 6px
+}
+
+.image-data{
+    width: 50px;
+    height: 50px;
+}
+
+.quantity{
+    max-width: 35px;
+    margin: auto;
+    border: 2px solid lightgray;
+    margin: 0;
+}
+
+.buy-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart{
+    width: 25px;
+    height: 25px;
+    color: grey;
+}
+.checkbox{
+    width: 15px;
+    height: 15px;
+}
