@@ -28,3 +28,14 @@
 .select-width{
     max-width: 25%;
 }
+.container-btn-type{
+    border: 1px solid grey;
+    position: relative;
+    top: 4px;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.btn-filter-type{
+    width: 100%;
+}

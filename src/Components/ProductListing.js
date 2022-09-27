@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ProductList from './ProductList';
 import { BiUpArrow, BiDownArrow } from "react-icons/bi";
-import Data from '../data.json'
 import './ProductListing.css'
+import Context from './Context/Context'
 
-const ProductListing = () => {
+const ProductListing = ({keyWord}) => {
+
+    const context = useContext(Context)
+    const { productData } = context
+
+    const data = productData.filter((x) => {
+        if(keyWord === ''){
+            return x;
+        }
+        else{
+            return x.name.toLowerCase().includes(keyWord);
+        }
+    })
+
     return (
         <div className='container table-container my-3'>
             <table className='table '>
@@ -18,13 +31,13 @@ const ProductListing = () => {
                         <th scope='col' className='bg-light'>Buy</th>
                     </tr>
                 </thead>
-                {(Data.map((items) => {
-                    return <ProductList key={items.id}
-                    name={items.name}
-                    prod_image={items.prod_photo}
-                    color={items.color}
-                    stock={items.stock}
-                    price={items.price}
+                {(data.map((item) => {
+                    return <ProductList key={item.id}
+                    name={item.name}
+                    prod_image={item.prod_photo}
+                    color={item.color}
+                    stock={item.stock}
+                    price={item.price}
                     />
                 }))}
             </table>

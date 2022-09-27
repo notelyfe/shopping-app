@@ -1,5 +1,4 @@
 import React from 'react'
-import pic from './pic7.jpeg'
 import './Checkout.css'
 
 const Checkout = () => {
@@ -19,7 +18,7 @@ const Checkout = () => {
                         <th scope='row' style={{ width: '20rem' }}>
                             <div className="container m-auto d-flex justify-content-around align-items-center">
                                 <button className="btn text-danger mx-2 delete">&times;</button>
-                                <img className='prod-pic mx-2' src={pic} alt="product image" />
+                                <img className='prod-pic mx-2' src="" alt="product" />
                                 <h5 className='d-inline mx-3'>Branded</h5>
                             </div>
                         </th>
