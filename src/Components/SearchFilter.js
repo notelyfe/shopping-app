@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const SearchFilter = () => {
 
     const context = useContext(Context)
-    const { fetchData, handelReset, outFit, filterSize, productSize } = context;
+    const { fetchData, handelReset, outFit, filterSize, productSize, cartdata} = context;
 
     // const filterProd = (e) => {
     //     e.preventDefault();
@@ -79,8 +79,8 @@ const SearchFilter = () => {
                                 {outFit}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item" onClick={filterShirt} id='shirt' href="#">Shirt</a></li>
-                                <li><a className="dropdown-item" onClick={filterHoodie} id='hoodie' href="#">Hoodie</a></li>
+                                <li><Link className="dropdown-item" onClick={filterShirt} id='shirt' to="#">Shirt</Link></li>
+                                <li><Link className="dropdown-item" onClick={filterHoodie} id='hoodie' to="#">Hoodie</Link></li>
                             </ul>
                         </div>
                         {/* <select className='form-select mx-1 select-width' name="filter_by_size" id="filter_by_size">
@@ -95,10 +95,10 @@ const SearchFilter = () => {
                                 {productSize}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item" onClick={small} href="#">S</a></li>
-                                <li><a className="dropdown-item" onClick={medium} href="#">M</a></li>
-                                <li><a className="dropdown-item" onClick={large} href="#">L</a></li>
-                                <li><a className="dropdown-item" onClick={extraLarge} href="#">XL</a></li>
+                                <li><Link className="dropdown-item" onClick={small} to="#">S</Link></li>
+                                <li><Link className="dropdown-item" onClick={medium} to="#">M</Link></li>
+                                <li><Link className="dropdown-item" onClick={large} to="#">L</Link></li>
+                                <li><Link className="dropdown-item" onClick={extraLarge} to="#">XL</Link></li>
                             </ul>
                         </div>
 
@@ -112,7 +112,7 @@ const SearchFilter = () => {
                             type="text" value={keyWord}
                             onChange={search}
                             placeholder='Search BY Name' />
-                        <Link className='btn btn-info text-light mx-1' to='/checkout'>Add To Cart</Link>
+                        <Link className={`btn btn-info text-light mx-1 ${(cartdata.length)<=0?'disabled':''}`} to='/checkout'>Add To Cart</Link>
                     </div>
                 </div>
             </div>

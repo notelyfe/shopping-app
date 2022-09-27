@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Checkout.css'
+import CheckoutData from './CheckoutData'
+import Context from './Context/Context'
 
 const Checkout = () => {
+
+    const context = useContext(Context)
+    const {cartdata} = context
+    
     return (
         <div className="container d-flex mt-2">
             <table className="table my-3 checkout-data">
@@ -13,34 +19,14 @@ const Checkout = () => {
                         <th scope='col'>Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope='row' style={{ width: '20rem' }}>
-                            <div className="container m-auto d-flex justify-content-around align-items-center">
-                                <button className="btn text-danger mx-2 delete">&times;</button>
-                                <img className='prod-pic mx-2' src="" alt="product" />
-                                <h5 className='d-inline mx-3'>Branded</h5>
-                            </div>
-                        </th>
-                        <th scope='row'>
-                            <div className="container checkout-detail">
-                                $21.00
-                            </div>
-                        </th >
-                        <th scope='row'>
-                            <div className="container checkout-quantity">
-                                <button className="decreased left-radius px-2 qty-btn border-right">-</button>
-                                <div className="container qty m-0 border-left border-right">0</div>
-                                <button className="increase right-radius px-2 qty-btn border-left">+</button>
-                            </div>
-                        </th>
-                        <th scope='row'>
-                            <div className="container checkout-detail text-primary">
-                                $50.00
-                            </div>
-                        </th>
-                    </tr>
-                </tbody>
+                {(cartdata.map((data) => {
+                    return <CheckoutData length={cartdata.length} key={data.id}
+                    id={data.id}
+                    image={data.prod_image}
+                    name={data.name}
+                    price={data.price}
+                    quantity={data.qty}/>
+                }))}
             </table>
 
             <div className="container rounded cart-amount-total ">

@@ -10,6 +10,7 @@ const State = (props) => {
         fetchData();
         filterSize()
         handelReset()
+        fetchCartData()
     }, [])
 
     const fetchData = async (type) => {
@@ -35,9 +36,38 @@ const State = (props) => {
         return await axios.get(url)
             .then((response) => setProductData(response.data))
     }
+    //fetch cart data
+    const fetchCartData = async () => {
+        const url = "https://shopping-data-server.herokuapp.com/cartData"
+        return await axios.get(url)
+            .then((response) => setCartData(response.data))
+    }
+    const [cartdata, setCartData] = useState([])
+
+    //add data to cart
+    const cartDetail = async (prod_image, name, price, stock, qty) => {
+        // console.log(prod_image, name, price, stock, qty)
+        const res = await fetch('https://shopping-data-server.herokuapp.com/cartData', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(prod_image, name, price, stock, qty)
+        });
+        const data = await res.json()
+        setCartData(JSON.parse(data))
+    }
+
+    //deleted item from cart
+    const deteleItem = async (id) => {
+        await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`,{
+            method: 'DELETE'
+        })
+        setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
+    }
 
     return (
-        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize }} >
+        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem }} >
             {props.children}
         </Context.Provider>
     )
