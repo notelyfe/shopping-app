@@ -33,6 +33,7 @@ const ProductListing = ({keyWord}) => {
                 </thead>
                 {(data.map((item) => {
                     return <ProductList key={item.id}
+                    id={item.id}
                     name={item.name}
                     prod_image={item.prod_photo}
                     color={item.color}

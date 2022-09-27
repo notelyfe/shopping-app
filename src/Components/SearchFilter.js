@@ -3,38 +3,61 @@ import './SearchFilter.css'
 import ProductListing from './ProductListing'
 import { BiReset } from "react-icons/bi";
 import Context from './Context/Context'
+import { Link } from 'react-router-dom'
 
 const SearchFilter = () => {
 
     const context = useContext(Context)
-    const { fetchData, handelReset } = context;
+    const { fetchData, handelReset, outFit, filterSize, productSize } = context;
 
-    const filterProd = (e) => {
-        e.preventDefault();
-        setType(e.target.value)
-        fetchData(type)
-    }
-    const [type, setType] = useState('')
+    // const filterProd = (e) => {
+    //     e.preventDefault();
+    //     console.log(type)
+    //     setType(e.target.value)
+    //     console.log(type)
+    //     fetchData(type)
+    // }
+    // const [type, setType] = useState('')
 
-    const reset =(e) => {
+    const reset = (e) => {
         e.preventDefault();
-        setType('')
         setKeyWord('')
         handelReset()
     }
 
-    
-    // const filterShirt =(e) => {
-    //     e.preventDefault();
-    //     setType('shirt')
-    //     filterProd(type)
-    // }
-    // const filterHoodie =(e) => {
-    //     e.preventDefault();
-    //     setType('hoodie')
-    //     filterProd(type)
-    // }
-    
+
+    const filterShirt = (e) => {
+        e.preventDefault();
+        const outfit = 'shirt'
+        fetchData(outfit)
+    }
+    const filterHoodie = (e) => {
+        e.preventDefault();
+        const outfit = 'hoodie'
+        fetchData(outfit)
+    }
+
+    const small = (e) => {
+        e.preventDefault()
+        const size = 'small'
+        filterSize(size)
+    }
+    const medium = (e) => {
+        e.preventDefault()
+        const size = 'medium'
+        filterSize(size)
+    }
+    const large = (e) => {
+        e.preventDefault()
+        const size = 'large'
+        filterSize(size)
+    }
+    const extraLarge = (e) => {
+        e.preventDefault()
+        const size = 'extralarge'
+        filterSize(size)
+    }
+
     const search = (e) => {
         setKeyWord(e.target.value)
     }
@@ -46,35 +69,50 @@ const SearchFilter = () => {
                 <div className="product-listing">
                     <div className="container filter-container mx-1 my-1">
 
-                        <select className='form-select mx-1 select-width' onChange={filterProd} name="filter_by_name" id="filter_by_name">
+                        {/* <select className='form-select mx-1 select-width' onChange={filterProd} name="filter_by_name" id="filter_by_name">
                             <option >Select...</option>
                             <option value="shirt">Shirt</option>
                             <option value="hoodie">Hoodie</option>
-                        </select>
-                        {/* <div className="dropdown">
-                            <button className="btn btn-secondary text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {type}
+                        </select> */}
+                        <div className="dropdown mx-1">
+                            <button className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {outFit}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a className="dropdown-item" onClick={filterShirt} id='shirt' href="#">Shirt</a></li>
                                 <li><a className="dropdown-item" onClick={filterHoodie} id='hoodie' href="#">Hoodie</a></li>
                             </ul>
-                        </div> */}
-                        <select className='form-select mx-1 select-width' name="filter_by_size" id="filter_by_size">
+                        </div>
+                        {/* <select className='form-select mx-1 select-width' name="filter_by_size" id="filter_by_size">
                             <option >Select...</option>
                             <option value="small">S</option>
                             <option value="medium">M</option>
                             <option value="large">L</option>
                             <option value="extralarge">XL</option>
-                        </select>
+                        </select> */}
+                        <div className="dropdown mx-1">
+                            <button className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {productSize}
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a className="dropdown-item" onClick={small} href="#">S</a></li>
+                                <li><a className="dropdown-item" onClick={medium} href="#">M</a></li>
+                                <li><a className="dropdown-item" onClick={large} href="#">L</a></li>
+                                <li><a className="dropdown-item" onClick={extraLarge} href="#">XL</a></li>
+                            </ul>
+                        </div>
 
                         <button className="btn mx-1 text-info border-0" onClick={reset}><BiReset />Reset</button>
                     </div>
 
                     <div className="container search-add mx-1">
                         <label className='mx-1 input' htmlFor="search" id='search'>Search</label>
-                        <input className='mx-1 form-control input-width' type="text" value={keyWord} onChange={search} placeholder='Search BY Name' />
-                        <button className='btn btn-info text-light mx-1'>Add To Cart</button>
+                        <input
+                            className='mx-1 form-control input-width'
+                            type="text" value={keyWord}
+                            onChange={search}
+                            placeholder='Search BY Name' />
+                        <Link className='btn btn-info text-light mx-1' to='/checkout'>Add To Cart</Link>
                     </div>
                 </div>
             </div>

@@ -20,6 +20,7 @@
     margin: auto;
     border: 2px solid lightgray;
     margin: 0;
+    color: grey;
 }
 
 .buy-item{
@@ -32,6 +33,10 @@
     width: 25px;
     height: 25px;
     color: grey;
+    cursor: pointer;
+}
+.cart:hover{
+    color: darkgray;
 }
 .checkbox{
     width: 15px;

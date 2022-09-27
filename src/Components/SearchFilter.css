@@ -28,12 +28,14 @@
 .select-width{
     max-width: 25%;
 }
-.container-btn-type{
-    border: 1px solid grey;
-    position: relative;
-    top: 4px;
-    transition: 0.5s;
-    z-index: 1;
+
+.btn-filter{
+    width: 100px;
+    box-shadow: 0 1px 5px rgba(70, 49, 74, 0.8);;
+}
+.btn-filter-size{
+    width: 130px;
+    box-shadow: 0 1px 5px rgba(70, 49, 74, 0.8);;
 }
 
 .btn-filter-type{

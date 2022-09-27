@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFillEmojiSmileFill, BsCartFill } from "react-icons/bs";
 import { ImSad2 } from "react-icons/im";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const ProductList = ({ prod_image, name, color, stock, price }) => {
+const ProductList = ({ id, prod_image, name, color, stock, price }) => {
+
+
+    const productQty = (e) => {
+        e.preventDefault()
+        setQty(e.target.value)
+        // if ((addToCart === false) && (qty > 0)) {
+        //     collectData(id, qty)
+        // }
+    }
+    const [qty, setQty] = useState('')
+
+    const bthChecked = (e) => {
+        setAddToCart(e.target.checked)
+    }
+    const [addToCart, setAddToCart] = useState(false)
+
+    const addProduct = () => {
+        
+    }
+
     return (
         <tbody className='text-center'>
             <tr >
@@ -16,9 +36,20 @@ const ProductList = ({ prod_image, name, color, stock, price }) => {
                 <th >{price}</th>
                 <th >
                     <div className="buy-item">
-                        <input className='quantity rounded text-center mx-1' name='quantity' type="text" />
-                        <BsCartFill className='cart mx-1' />
-                        <input type="checkbox" className='checkbox mx-1' />
+                        <input
+                            className='quantity rounded text-center mx-1'
+                            name='quantity'
+                            type="text"
+                            value={qty}
+                            onChange={productQty} />
+                        <BsCartFill onClick={addProduct} className='cart mx-1' />
+                        <input
+                            type="checkbox"
+                            className='checkbox mx-1'
+                            onChange={bthChecked}
+                            value={addToCart}
+                            checked={addToCart}
+                        />
                     </div>
                 </th>
             </tr>
