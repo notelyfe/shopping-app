@@ -16,6 +16,8 @@ const SearchFilter = () => {
         showAlert('Data Reset Success', 'success')
         localStorage.removeItem('type')
         localStorage.removeItem('size')
+        localStorage.removeItem('order')
+        localStorage.removeItem('field')
     }
 
     const filterShirt = (e) => {

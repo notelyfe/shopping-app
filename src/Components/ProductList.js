@@ -4,7 +4,7 @@ import { ImSad2 } from "react-icons/im";
 import { Link } from 'react-router-dom'
 import Context from './Context/Context';
 
-const ProductList = ({ id, prod_image, name, color, stock, price }) => {
+const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
 
     const context = useContext(Context)
     const { cartDetail, showAlert } = context
@@ -49,6 +49,7 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
                     <img className='image-data' src={prod_image} alt="pics.jpeg" />
                 </th>
                 <th ><Link className='text-info' to="#">{name}</Link></th>
+                <th className='text-dark text-capitalize'>{size}</th>
                 <th className='text-info'>{color}</th>
                 <th className={` text-${(stock !== '0') ? 'success' : 'danger'}`}>{stock !== '0' ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== '0' ? 'In Stock' : 'Out Of Stock'}</th>
                 <th>{stock}</th>

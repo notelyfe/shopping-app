@@ -12,25 +12,36 @@ const State = (props) => {
         fetchCartData()
     }, [])
 
-    const fetchData = async (type, size) => {
+    const fetchData = async (field1, field2) => {
         let typeX = []
         let sizeX = []
+        let para1 = []
+        let para2 = []
 
-        if (type !== undefined) {
-            typeX = type
+        if ((field2 === 'asc') || (field2 === 'desc')) {
+            para1 = field1;
+            para2 = field2;
+            localStorage.setItem('field', JSON.stringify(para1))
+            localStorage.setItem('order', JSON.stringify(para2))
+        }
+        else if (field1 !== undefined) {
+            typeX = field1
             localStorage.setItem('type', JSON.stringify(typeX))
 
-        } else if (size !== undefined) {
-            sizeX = size
+        } else if (field2 !== undefined) {
+            sizeX = field2
             localStorage.setItem('size', JSON.stringify(sizeX))
         }
+
         let localType = JSON.parse(localStorage.getItem('type'))
         let localSize = JSON.parse(localStorage.getItem('size'))
+        let localField = JSON.parse(localStorage.getItem('field'))
+        let localOrder = JSON.parse(localStorage.getItem('order'))
         setOutFit(localType)
         setProductSize(localSize)
+
+        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}${localField !== null ? '&_sort=':''}${localField !== null ? localField : ''}${localOrder !== null ? '&_order=':''}${localOrder !== null ? localOrder : ''}`
         
-        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}`
-        console.log(url)
         return await axios.get(url)
             .then((response) => setProductData(response.data))
     }

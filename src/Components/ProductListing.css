@@ -1,13 +1,15 @@
 .uparrow{
     position: relative;
     right: -12px;
-    top: -7px
+    top: -7px;
+    cursor: pointer;
 }
 
 .downarrow{
     position: relative;
     right: 4px;
-    top: 6px
+    top: 6px;
+    cursor: pointer;
 }
 
 .image-data{
