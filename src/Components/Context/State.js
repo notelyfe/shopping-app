@@ -8,25 +8,34 @@ const State = (props) => {
 
     useEffect(() => {
         fetchData();
-        filterSize()
         handelReset()
         fetchCartData()
     }, [])
 
-    const fetchData = async (type) => {
-        setOutFit(type)
-        const url = `https://shopping-data-server.herokuapp.com/productData${type !== undefined ? '?type=' : ''}${type !== undefined ? type : ''}`
+    const fetchData = async (type, size) => {
+        let typeX = []
+        let sizeX = []
+
+        if (type !== undefined) {
+            typeX = type
+            localStorage.setItem('type', JSON.stringify(typeX))
+
+        } else if (size !== undefined) {
+            sizeX = size
+            localStorage.setItem('size', JSON.stringify(sizeX))
+        }
+        let localType = JSON.parse(localStorage.getItem('type'))
+        let localSize = JSON.parse(localStorage.getItem('size'))
+        setOutFit(localType)
+        setProductSize(localSize)
+        
+        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}`
+        console.log(url)
         return await axios.get(url)
             .then((response) => setProductData(response.data))
     }
     const [outFit, setOutFit] = useState('type')
 
-    const filterSize = async (size) => {
-        setProductSize(size)
-        const url = `https://shopping-data-server.herokuapp.com/productData?size=${size}`
-        return await axios.get(url)
-            .then((response) => setProductData(response.data))
-    }
     const [productSize, setProductSize] = useState('Size')
 
     const handelReset = async () => {
@@ -100,7 +109,20 @@ const State = (props) => {
     const [alert, setAlert] = useState(null)
 
     return (
-        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty, showAlert, alert }} >
+        <Context.Provider
+            value={{
+                productData,
+                fetchData,
+                handelReset,
+                outFit,
+                productSize,
+                cartDetail,
+                cartdata,
+                deteleItem,
+                editQty,
+                showAlert,
+                alert
+            }} >
             {props.children}
         </Context.Provider>
     )

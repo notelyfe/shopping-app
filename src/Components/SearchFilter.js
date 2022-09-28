@@ -8,54 +8,46 @@ import { Link } from 'react-router-dom'
 const SearchFilter = () => {
 
     const context = useContext(Context)
-    const { fetchData, handelReset, outFit, filterSize, productSize, cartdata, showAlert } = context;
-
-    // const filterProd = (e) => {
-    //     e.preventDefault();
-    //     console.log(type)
-    //     setType(e.target.value)
-    //     console.log(type)
-    //     fetchData(type)
-    // }
-    // const [type, setType] = useState('')
+    const { fetchData, handelReset, outFit, productSize, cartdata, showAlert } = context;
 
     const reset = (e) => {
         setKeyWord('')
         handelReset()
         showAlert('Data Reset Success', 'success')
+        localStorage.removeItem('type')
+        localStorage.removeItem('size')
     }
-
 
     const filterShirt = (e) => {
         e.preventDefault();
         const outfit = 'shirt'
-        fetchData(outfit)
+        fetchData(outfit, undefined)
     }
     const filterHoodie = (e) => {
         e.preventDefault();
         const outfit = 'hoodie'
-        fetchData(outfit)
+        fetchData(outfit, undefined)
     }
 
     const small = (e) => {
         e.preventDefault()
         const size = 'small'
-        filterSize(size)
+        fetchData(undefined, size)
     }
     const medium = (e) => {
         e.preventDefault()
         const size = 'medium'
-        filterSize(size)
+        fetchData(undefined, size)
     }
     const large = (e) => {
         e.preventDefault()
         const size = 'large'
-        filterSize(size)
+        fetchData(undefined, size)
     }
     const extraLarge = (e) => {
         e.preventDefault()
         const size = 'extralarge'
-        filterSize(size)
+        fetchData(undefined, size)
     }
 
     const search = (e) => {
@@ -68,31 +60,18 @@ const SearchFilter = () => {
             <div className='container my-2'>
                 <div className="product-listing">
                     <div className="container filter-container mx-1 my-1">
-
-                        {/* <select className='form-select mx-1 select-width' onChange={filterProd} name="filter_by_name" id="filter_by_name">
-                            <option >Select...</option>
-                            <option value="shirt">Shirt</option>
-                            <option value="hoodie">Hoodie</option>
-                        </select> */}
                         <div className="dropdown mx-1">
-                            <button className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {outFit}
+                            <button  className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {outFit !== null?outFit:'type'}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><Link className="dropdown-item" onClick={filterShirt} id='shirt' to="#">Shirt</Link></li>
                                 <li><Link className="dropdown-item" onClick={filterHoodie} id='hoodie' to="#">Hoodie</Link></li>
                             </ul>
                         </div>
-                        {/* <select className='form-select mx-1 select-width' name="filter_by_size" id="filter_by_size">
-                            <option >Select...</option>
-                            <option value="small">S</option>
-                            <option value="medium">M</option>
-                            <option value="large">L</option>
-                            <option value="extralarge">XL</option>
-                        </select> */}
                         <div className="dropdown mx-1">
-                            <button className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {productSize}
+                            <button  className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {productSize !== null?productSize:'size'}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><Link className="dropdown-item" onClick={small} to="#">S</Link></li>
