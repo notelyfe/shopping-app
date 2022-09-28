@@ -4,16 +4,16 @@ import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 import './ProductListing.css'
 import Context from './Context/Context'
 
-const ProductListing = ({keyWord}) => {
+const ProductListing = ({ keyWord }) => {
 
     const context = useContext(Context)
     const { productData, fetchData } = context
 
     const data = productData.filter((x) => {
-        if(keyWord === ''){
+        if (keyWord === '') {
             return x;
         }
-        else{
+        else {
             return x.name.toLowerCase().includes(keyWord);
         }
     })
@@ -57,24 +57,52 @@ const ProductListing = ({keyWord}) => {
                 <thead className='text-center'>
                     <tr>
                         <th scope='col' className='bg-light'>Image</th>
-                        <th scope='col' className='bg-light'>Name  <BiUpArrow onClick={SortByNameAcs} className='uparrow' /><BiDownArrow onClick={SortByNameDesc} className='downarrow' /></th>
-                        <th scope='col' className='bg-light'>Size  <BiUpArrow onClick={SortBySizeDesc} className='uparrow' /><BiDownArrow onClick={SortBySizeAsc} className='downarrow' /></th>
+
+                        <th scope='col' className='bg-light'>Name
+                            <abbr title="Sort item in Ascending order">
+                                <BiUpArrow onClick={SortByNameAcs} className='uparrow' />
+                            </abbr>
+                            <abbr title="Sort item in Descending order">
+                                <BiDownArrow onClick={SortByNameDesc} className='downarrow' />
+                            </abbr>
+                        </th>
+
+                        <th scope='col' className='bg-light'>Size
+                            <abbr title="Sort item in Ascending order">
+                                <BiUpArrow onClick={SortBySizeDesc} className='uparrow' />
+                            </abbr>
+                            <abbr title="Sort item in Descending order">
+                                <BiDownArrow onClick={SortBySizeAsc} className='downarrow' />
+                            </abbr>
+                        </th>
+
                         <th scope='col' className='bg-light'>Color </th>
+
                         <th scope='col' className='bg-light'>Stock </th>
+
                         <th scope='col' className='bg-light'>Stock Left</th>
-                        <th scope='col' className='bg-light'>Price <BiUpArrow onClick={SortByPriceAcs} className='uparrow' /><BiDownArrow onClick={SortByPriceDesc} className='downarrow' /></th>
+
+                        <th scope='col' className='bg-light'>Price
+                            <abbr title="Sort item in Ascending order">
+                                <BiUpArrow onClick={SortByPriceAcs} className='uparrow' />
+                            </abbr>
+                            <abbr title="Sort item in Descending order">
+                                <BiDownArrow onClick={SortByPriceDesc} className='downarrow' />
+                            </abbr>
+                        </th>
+
                         <th scope='col' className='bg-light'>Buy</th>
                     </tr>
                 </thead>
                 {(data.map((item) => {
                     return <ProductList key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    size={item.size}
-                    prod_image={item.prod_photo}
-                    color={item.color}
-                    stock={item.stock}
-                    price={item.price}
+                        id={item.id}
+                        name={item.name}
+                        size={item.size}
+                        prod_image={item.prod_photo}
+                        color={item.color}
+                        stock={item.stock}
+                        price={item.price}
                     />
                 }))}
             </table>

@@ -4,12 +4,18 @@
     top: -7px;
     cursor: pointer;
 }
+.uparrow:hover{
+    color: red;
+}
 
 .downarrow{
     position: relative;
     right: 4px;
     top: 6px;
     cursor: pointer;
+}
+.downarrow:hover{
+    color: red;
 }
 
 .image-data{
