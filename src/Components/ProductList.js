@@ -7,35 +7,43 @@ import Context from './Context/Context';
 const ProductList = ({ id, prod_image, name, color, stock, price }) => {
 
     const context = useContext(Context)
-    const {cartDetail} = context
+    const { cartDetail, showAlert } = context
 
     const productQty = (e) => {
         e.preventDefault()
-        if(e.target.value > stock){
+        if (e.target.value > stock) {
             setQty(stock)
-        }else{
+            showAlert('Maximum Available Stock is Added', 'info')
+        } else {
             setQty(e.target.value)
         }
     }
     const [qty, setQty] = useState('')
 
     const bthChecked = (e) => {
-        setAddToCart(e.target.checked)
+        setChecked(e.target.checked)
     }
-    const [addToCart, setAddToCart] = useState(false)
+    const [checked, setChecked] = useState(false)
 
     const addProduct = (e) => {
         e.preventDefault()
-        if((addToCart===true) && (qty !== '')){
-            cartDetail({prod_image, name, price, stock, qty })
+        if ((checked === true) && (qty !== '')) {
+            cartDetail({ prod_image, name, price, stock, qty })
+            showAlert('Item Added to Cart Successfully', 'success')
             setQty('')
-            setAddToCart(false)
+            setChecked(false)
+        }
+        else if (stock === '0') {
+            showAlert('Item Out Of Stock', 'danger')
+        }
+        else {
+            showAlert('Please Select Provided Input', 'warning')
         }
     }
 
     return (
         <tbody className='text-center'>
-            <tr className={`${(stock === '0')?'alert alert-danger':''}`}>
+            <tr className={`${(stock === '0') ? 'alert alert-danger' : ''}`}>
                 <th scope='row'>
                     <img className='image-data' src={prod_image} alt="pics.jpeg" />
                 </th>
@@ -51,13 +59,16 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
                             type="text"
                             value={qty}
                             onChange={productQty} />
-                        <BsCartFill onClick={addProduct} className='cart mx-1' />
+                        <BsCartFill
+                            onClick={addProduct}
+                            className='cart mx-1'
+                        />
                         <input disabled={stock === '0'}
                             type="checkbox"
                             className='checkbox mx-1 disabled'
                             onChange={bthChecked}
-                            value={addToCart}
-                            checked={addToCart}
+                            value={checked}
+                            checked={checked}
                         />
                     </div>
                 </th>

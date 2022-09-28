@@ -4,7 +4,7 @@ import Context from './Context/Context';
 const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
 
     const context = useContext(Context)
-    const { deteleItem, editQty } = context
+    const { deteleItem, editQty, showAlert } = context
 
     const subTotal = () => {
         let unitPrice = price;
@@ -14,12 +14,18 @@ const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
         return Subtotal
     }
 
-    const getTotal = async () => {
-        const x = await subTotal();
-        setProductTotal(x)
+    const getminiTotal = async () => {
+        const subtotal = await subTotal();
+        setProductTotal(subtotal)
     }
-    getTotal()
+    getminiTotal()
     const [productTotal, setProductTotal] = useState('')
+
+    const totalCartValue = async () => {
+
+    }
+    totalCartValue()
+    // const [total, setTotal] = useState('')
 
     const incQuantity = () => {
         qty = parseInt(qty) + 1
@@ -27,6 +33,7 @@ const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
             editQty({ id, qty, prod_image, name, price, stock })
         }
     }
+
     const decQuantity = () => {
         if (parseInt(qty) < 1) {
             deteleItem(id)
@@ -38,10 +45,11 @@ const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
 
     const removeItem = () => {
         deteleItem(id)
+        showAlert('Item Deleted SuccessFully', 'success')
     }
 
     return (
-        
+
         <tbody>
             <tr>
                 <th scope='row' style={{ width: '20rem' }}>

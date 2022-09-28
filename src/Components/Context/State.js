@@ -65,21 +65,26 @@ const State = (props) => {
         setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
     }
 
+    //clear whole cart
+    const cleardata = () => {
+
+    }
+
     //edit quantity into the cartdata
-    const editQty = async ( {prod_image, name, price, stock, qty, id} ) => {
+    const editQty = async ({ prod_image, name, price, stock, qty, id }) => {
         const res = await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({prod_image, name, price, stock, qty, id})
+            body: JSON.stringify({ prod_image, name, price, stock, qty, id })
         });
         const json = await res.json();
 
         let newdata = JSON.parse(JSON.stringify(cartdata))
-        for( let i=0; i<newdata.length; i++){
+        for (let i = 0; i < newdata.length; i++) {
             const newQty = newdata[i];
-            if(newQty.id === id){
+            if (newQty.id === id) {
                 newdata[i].qty = qty;
                 break;
             }
@@ -87,8 +92,20 @@ const State = (props) => {
         setCartData(newdata)
     }
 
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert('')
+        }, 2000);
+    }
+
+    const [alert, setAlert] = useState(null)
+
     return (
-        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty }} >
+        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty, cleardata, showAlert, alert }} >
             {props.children}
         </Context.Provider>
     )

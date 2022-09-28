@@ -16,7 +16,8 @@
     border: none;
 }
 .prod-pic{
-    width: 65px;
+    width: 72px;
+    height: 87px;
 }
 
 .qty-btn{
@@ -35,12 +36,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.stock{
-    width: 205px;
-    display: block;
-    border: 2px solid green;
 }
 
 .border-left{
@@ -76,4 +71,13 @@
 }
 .btn-add{
     width: 100%;
+}
+.trash{
+    width: 20px;
+    height: 20px;
+    float: left;
+    cursor: pointer;
+}
+.trash:hover{
+    color: rgb(182, 36, 36);
 }

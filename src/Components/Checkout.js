@@ -2,20 +2,24 @@ import React, { useContext } from 'react'
 import './Checkout.css'
 import CheckoutData from './CheckoutData'
 import Context from './Context/Context'
+import { FaTrashAlt } from "react-icons/fa";
 
 const Checkout = () => {
 
     const context = useContext(Context)
-    const { cartdata } = context
+    const { cartdata, cleardata } = context
+
+    const clearCart = () => {
+        cleardata()
+    }
 
     return (
         <>
-            {/* <small className='text-danger stock'>Maximum Stock Available </small> */}
             <div className="container d-flex mt-2">
                 <table className="table my-3 checkout-data">
                     <thead className='bg-light text-center'>
                         <tr>
-                            <th scope='col'>Product</th>
+                            <th scope='col'><FaTrashAlt onClick={clearCart} className='trash mt-1 ms-4 ' />Product</th>
                             <th scope='col'>Price</th>
                             <th scope='col'>Quantity</th>
                             <th scope='col'>Subtotal</th>

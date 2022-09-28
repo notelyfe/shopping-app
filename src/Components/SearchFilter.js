@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const SearchFilter = () => {
 
     const context = useContext(Context)
-    const { fetchData, handelReset, outFit, filterSize, productSize, cartdata} = context;
+    const { fetchData, handelReset, outFit, filterSize, productSize, cartdata, showAlert } = context;
 
     // const filterProd = (e) => {
     //     e.preventDefault();
@@ -20,9 +20,9 @@ const SearchFilter = () => {
     // const [type, setType] = useState('')
 
     const reset = (e) => {
-        e.preventDefault();
         setKeyWord('')
         handelReset()
+        showAlert('Data Reset Success', 'success')
     }
 
 
@@ -102,7 +102,11 @@ const SearchFilter = () => {
                             </ul>
                         </div>
 
-                        <button className="btn mx-1 text-info border-0" onClick={reset}><BiReset />Reset</button>
+                        <button
+                            className="btn mx-1 text-info border-0"
+                            onClick={reset}>
+                            <BiReset />Reset
+                        </button>
                     </div>
 
                     <div className="container search-add mx-1">
@@ -112,11 +116,15 @@ const SearchFilter = () => {
                             type="text" value={keyWord}
                             onChange={search}
                             placeholder='Search BY Name' />
-                        <Link className={`btn btn-info text-light mx-1 ${(cartdata.length)<=0?'disabled':''}`} to='/checkout'>Add To Cart</Link>
+                        <Link
+                            className={`btn btn-info text-light mx-1 ${(cartdata.length) <= 0 ? 'disabled' : ''}`}
+                            to='/checkout'>
+                            Add To Cart
+                        </Link>
                     </div>
                 </div>
             </div>
-            <ProductListing keyWord={keyWord} />
+            <ProductListing keyWord={keyWord}/>
         </>
     )
 }
