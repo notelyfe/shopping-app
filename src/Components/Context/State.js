@@ -65,11 +65,6 @@ const State = (props) => {
         setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
     }
 
-    //clear whole cart
-    const cleardata = () => {
-
-    }
-
     //edit quantity into the cartdata
     const editQty = async ({ prod_image, name, price, stock, qty, id }) => {
         const res = await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
@@ -105,7 +100,7 @@ const State = (props) => {
     const [alert, setAlert] = useState(null)
 
     return (
-        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty, cleardata, showAlert, alert }} >
+        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty, showAlert, alert }} >
             {props.children}
         </Context.Provider>
     )

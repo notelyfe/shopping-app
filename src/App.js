@@ -6,6 +6,7 @@ import Checkout from './Components/Checkout';
 import State from './Components/Context/State'
 import Alert from './Components/Alert'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import ThankYou from './Components/ThankYou';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<SearchFilter />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/confirmationPage" element={<ThankYou />} />
           </Routes>
         </Router>
       </State>

@@ -27,6 +27,7 @@ const ProductListing = ({keyWord}) => {
                         <th scope='col' className='bg-light'>Name  <BiUpArrow className='uparrow' /><BiDownArrow className='downarrow' /></th>
                         <th scope='col' className='bg-light'>Color <BiUpArrow className='uparrow' /><BiDownArrow className='downarrow' /></th>
                         <th scope='col' className='bg-light'>Stock <BiUpArrow className='uparrow' /><BiDownArrow className='downarrow' /></th>
+                        <th scope='col' className='bg-light'>Stock Left</th>
                         <th scope='col' className='bg-light'>Price <BiUpArrow className='uparrow' /><BiDownArrow className='downarrow' /></th>
                         <th scope='col' className='bg-light'>Buy</th>
                     </tr>

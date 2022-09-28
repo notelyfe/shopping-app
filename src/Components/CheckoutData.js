@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context/Context';
 
-const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
+const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
 
     const context = useContext(Context)
     const { deteleItem, editQty, showAlert } = context
@@ -20,12 +20,6 @@ const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
     }
     getminiTotal()
     const [productTotal, setProductTotal] = useState('')
-
-    const totalCartValue = async () => {
-
-    }
-    totalCartValue()
-    // const [total, setTotal] = useState('')
 
     const incQuantity = () => {
         qty = parseInt(qty) + 1

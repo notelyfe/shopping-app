@@ -11,13 +11,9 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
 
     const productQty = (e) => {
         e.preventDefault()
-        if (e.target.value > stock) {
-            setQty(stock)
-            showAlert('Maximum Available Stock is Added', 'info')
-        } else {
             setQty(e.target.value)
-        }
     }
+
     const [qty, setQty] = useState('')
 
     const bthChecked = (e) => {
@@ -28,10 +24,15 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
     const addProduct = (e) => {
         e.preventDefault()
         if ((checked === true) && (qty !== '')) {
-            cartDetail({ prod_image, name, price, stock, qty })
-            showAlert('Item Added to Cart Successfully', 'success')
-            setQty('')
-            setChecked(false)
+            if (parseInt(qty) <= parseInt(stock)) {
+                cartDetail({ prod_image, name, price, stock, qty })
+                showAlert('Item Added to Cart Successfully', 'success')
+                setQty('')
+                setChecked(false)
+            }else{
+                setQty(stock)
+                showAlert('We are reseting your Quantity to max Available Quantity, please click on cart again to Add', 'info')
+            }
         }
         else if (stock === '0') {
             showAlert('Item Out Of Stock', 'danger')
@@ -43,14 +44,15 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
 
     return (
         <tbody className='text-center'>
-            <tr className={`${(stock === '0') ? 'alert alert-danger' : ''}`}>
+            <tr >
                 <th scope='row'>
                     <img className='image-data' src={prod_image} alt="pics.jpeg" />
                 </th>
                 <th ><Link className='text-info' to="#">{name}</Link></th>
                 <th className='text-info'>{color}</th>
                 <th className={` text-${(stock !== '0') ? 'success' : 'danger'}`}>{stock !== '0' ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== '0' ? 'In Stock' : 'Out Of Stock'}</th>
-                <th >{price}</th>
+                <th>{stock}</th>
+                <th >₹{price}</th>
                 <th >
                     <div className="buy-item">
                         <input
