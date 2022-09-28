@@ -37,6 +37,12 @@
     align-items: center;
 }
 
+.stock{
+    width: 205px;
+    display: block;
+    border: 2px solid green;
+}
+
 .border-left{
     border-left: none;
 }

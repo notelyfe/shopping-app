@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context/Context';
 
-const CheckoutData = ({ id, image, name, price, quantity, length }) => {
+const CheckoutData = ({ id, length, prod_image, name, price, qty, stock }) => {
 
     const context = useContext(Context)
-    const {deteleItem} = context
+    const { deteleItem, editQty } = context
 
     const subTotal = () => {
         let unitPrice = price;
-        let unit = quantity;
+        let unit = qty;
         const Subtotal = unitPrice * unit;
 
         return Subtotal
     }
-    
+
     const getTotal = async () => {
         const x = await subTotal();
         setProductTotal(x)
@@ -22,10 +22,18 @@ const CheckoutData = ({ id, image, name, price, quantity, length }) => {
     const [productTotal, setProductTotal] = useState('')
 
     const incQuantity = () => {
-        
+        qty = parseInt(qty) + 1
+        if (qty <= stock) {
+            editQty({ id, qty, prod_image, name, price, stock })
+        }
     }
-    const decQuantity = (e) => {
-        
+    const decQuantity = () => {
+        if (parseInt(qty) < 1) {
+            deteleItem(id)
+        } else {
+            qty = parseInt(qty) - 1
+            editQty({ id, qty, prod_image, name, price, stock })
+        }
     }
 
     const removeItem = () => {
@@ -33,13 +41,14 @@ const CheckoutData = ({ id, image, name, price, quantity, length }) => {
     }
 
     return (
+        
         <tbody>
             <tr>
                 <th scope='row' style={{ width: '20rem' }}>
                     <div className="container m-auto d-flex justify-content-around align-items-center">
                         <button className="btn text-danger mx-2 delete" onClick={removeItem}>&times;</button>
-                        <img className='prod-pic mx-2' src={image} alt="product" />
-                        <h5 className='d-inline mx-3' style={{width: '200px'}}>{name}</h5>
+                        <img className='prod-pic mx-2' src={prod_image} alt="product" />
+                        <h5 className='d-inline mx-3' style={{ width: '200px' }}>{name}</h5>
                     </div>
                 </th>
                 <th scope='row'>
@@ -50,7 +59,7 @@ const CheckoutData = ({ id, image, name, price, quantity, length }) => {
                 <th scope='row'>
                     <div className="container checkout-quantity">
                         <button className="decreased left-radius px-2 qty-btn border-right" onClick={decQuantity}>-</button>
-                        <div className="container qty m-0 border-left border-right">{quantity}</div>
+                        <div className="container qty m-0 border-left border-right">{qty}</div>
                         <button className="increase right-radius px-2 qty-btn border-left" onClick={incQuantity}>+</button>
                     </div>
                 </th>

@@ -46,7 +46,6 @@ const State = (props) => {
 
     //add data to cart
     const cartDetail = async (prod_image, name, price, stock, qty) => {
-        // console.log(prod_image, name, price, stock, qty)
         const res = await fetch('https://shopping-data-server.herokuapp.com/cartData', {
             method: 'POST',
             headers: {
@@ -55,19 +54,41 @@ const State = (props) => {
             body: JSON.stringify(prod_image, name, price, stock, qty)
         });
         const data = await res.json()
-        setCartData(JSON.parse(data))
+        setCartData([...cartdata, data])
     }
 
     //deleted item from cart
     const deteleItem = async (id) => {
-        await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`,{
+        await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
             method: 'DELETE'
         })
         setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
     }
 
+    //edit quantity into the cartdata
+    const editQty = async ( {prod_image, name, price, stock, qty, id} ) => {
+        const res = await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({prod_image, name, price, stock, qty, id})
+        });
+        const json = await res.json();
+
+        let newdata = JSON.parse(JSON.stringify(cartdata))
+        for( let i=0; i<newdata.length; i++){
+            const newQty = newdata[i];
+            if(newQty.id === id){
+                newdata[i].qty = qty;
+                break;
+            }
+        }
+        setCartData(newdata)
+    }
+
     return (
-        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem }} >
+        <Context.Provider value={{ productData, fetchData, handelReset, outFit, filterSize, productSize, cartDetail, cartdata, deteleItem, editQty }} >
             {props.children}
         </Context.Provider>
     )

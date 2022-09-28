@@ -35,13 +35,13 @@ const ProductList = ({ id, prod_image, name, color, stock, price }) => {
 
     return (
         <tbody className='text-center'>
-            <tr >
+            <tr className={`${(stock === '0')?'alert alert-danger':''}`}>
                 <th scope='row'>
                     <img className='image-data' src={prod_image} alt="pics.jpeg" />
                 </th>
                 <th ><Link className='text-info' to="#">{name}</Link></th>
                 <th className='text-info'>{color}</th>
-                <th className={`text-${(stock !== '0') ? 'success' : 'danger'}`}>{stock !== '0' ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== '0' ? 'In Stock' : 'Out Of Stock'}</th>
+                <th className={` text-${(stock !== '0') ? 'success' : 'danger'}`}>{stock !== '0' ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== '0' ? 'In Stock' : 'Out Of Stock'}</th>
                 <th >{price}</th>
                 <th >
                     <div className="buy-item">
