@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ProductList from './ProductList';
-import { BiUpArrow, BiDownArrow } from "react-icons/bi";
+import { AiFillCaretDown } from "react-icons/ai";
 import './ProductListing.css'
 import Context from './Context/Context'
 
@@ -60,19 +60,19 @@ const ProductListing = ({ keyWord }) => {
 
                         <th scope='col' className='bg-light'>Name
                             <abbr title="Sort item in Ascending order">
-                                <BiUpArrow onClick={SortByNameAcs} className='uparrow' />
+                                <AiFillCaretDown onClick={SortByNameAcs} className='uparrow' />
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <BiDownArrow onClick={SortByNameDesc} className='downarrow' />
+                                <AiFillCaretDown onClick={SortByNameDesc} className='downarrow' />
                             </abbr>
                         </th>
 
                         <th scope='col' className='bg-light'>Size
                             <abbr title="Sort item in Ascending order">
-                                <BiUpArrow onClick={SortBySizeDesc} className='uparrow' />
+                                <AiFillCaretDown onClick={SortBySizeDesc} className='uparrow' />
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <BiDownArrow onClick={SortBySizeAsc} className='downarrow' />
+                                <AiFillCaretDown onClick={SortBySizeAsc} className='downarrow' />
                             </abbr>
                         </th>
 
@@ -84,10 +84,10 @@ const ProductListing = ({ keyWord }) => {
 
                         <th scope='col' className='bg-light'>Price
                             <abbr title="Sort item in Ascending order">
-                                <BiUpArrow onClick={SortByPriceAcs} className='uparrow' />
+                                <AiFillCaretDown onClick={SortByPriceAcs} className='uparrow' />
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <BiDownArrow onClick={SortByPriceDesc} className='downarrow' />
+                                <AiFillCaretDown onClick={SortByPriceDesc} className='downarrow' />
                             </abbr>
                         </th>
 

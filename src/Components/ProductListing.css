@@ -1,8 +1,10 @@
 .uparrow{
     position: relative;
-    right: -12px;
+    right: -14px;
     top: -7px;
     cursor: pointer;
+    transform:  rotate(180deg);
+    font-size: 18px;
 }
 .uparrow:hover{
     color: red;
@@ -13,6 +15,7 @@
     right: 4px;
     top: 6px;
     cursor: pointer;
+    font-size: 18px;
 }
 .downarrow:hover{
     color: red;
