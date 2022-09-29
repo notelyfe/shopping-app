@@ -10,7 +10,16 @@ const Alert = () => {
 
     return (
         <>
-            {alert && <div className={`alert alert-${alert.type} text-center container mt-1`} style={{ maxWidth: '40%', boxSizing: 'border-box' }}>
+            {alert && <div
+                className={`alert alert-${alert.type} text-center container mt-1`}
+                style={{
+                    position: 'fixed',
+                    top: '52px',
+                    maxWidth: '40%',
+                    zIndex: '1',
+                    left: '25%'
+                }}>
+
                 {(alert.type === 'success') ? <AiFillCheckCircle
                     className='text-success mx-3'
                     style={{ fontSize: '22px' }} /> : ''}

@@ -11,7 +11,7 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
 
     const productQty = (e) => {
         e.preventDefault()
-            setQty(e.target.value)
+        setQty(e.target.value)
     }
 
     const [qty, setQty] = useState('')
@@ -29,7 +29,7 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
                 showAlert('Item Added to Cart Successfully', 'success')
                 setQty('')
                 setChecked(false)
-            }else{
+            } else {
                 setQty(stock)
                 showAlert('We are reseting your Quantity to max Available Quantity, please click on cart again to Add', 'info')
             }
