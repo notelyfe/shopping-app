@@ -55,7 +55,7 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
                 </th>
                 <th ><Link className='text-info' to="#">{name}</Link></th>
                 <th className='text-dark text-capitalize'>{size}</th>
-                <th className='text-info'>{color}</th>
+                <th className='text-capitalize'>{color}</th>
                 <th className={` text-${(stock !== 0) ? 'success' : 'danger'}`}>{stock !== 0 ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== 0 ? 'In Stock' : 'Out Of Stock'}</th>
                 <th>{stock}</th>
                 <th >₹{price}</th>

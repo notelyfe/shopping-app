@@ -83,6 +83,7 @@
     height: 20px;
     float: left;
     cursor: pointer;
+    background-color: #f8f9fa;
 }
 .trash:hover{
     color: rgb(182, 36, 36);

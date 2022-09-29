@@ -25,6 +25,14 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
         qty = parseInt(qty) + 1
         if (qty <= stock) {
             editQty({ id, qty, prod_image, name, price, stock })
+            setTimeout(() => {
+                showAlert('Response resieve please wait for a second', 'info')
+            }, 10);
+        }
+        else if( qty+1 > stock){
+            setTimeout(() => {
+                showAlert(`Maximum available Quantity for this Item: ${stock}`, 'info')
+            }, 10);
         }
     }
 
@@ -35,6 +43,9 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
         } else {
             qty = parseInt(qty) - 1
             editQty({ id, qty, prod_image, name, price, stock })
+            setTimeout(() => {
+                showAlert('Response resieve please wait for a second', 'info')
+            }, 10);
         }
     }
 
