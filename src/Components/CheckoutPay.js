@@ -27,7 +27,7 @@ const CheckoutPay = () => {
     const confirm = () => {
         let arr = cartdata
         let id 
-        let action = 'clear'
+        let action = 'checkout'
         for(let i = 0; i< cartdata.length; i++){
             id = arr[i].id
             deteleItem(id, action)

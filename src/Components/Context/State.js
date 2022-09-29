@@ -85,10 +85,15 @@ const State = (props) => {
         if (action === 'clear') {
             setCartData([])
             showAlert('Cart has Been Clear SuccessFully', 'success')
-        } else if (action === 'QtyDelete') {
+        }
+        else if (action === 'checkout') {
+            setCartData([])
+        }
+        else if (action === 'QtyDelete') {
             setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
             showAlert('Item Deleted Because Quantity goes below 1', 'info')
-        }else{
+        }
+        else {
             setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
             showAlert('Item Deleted SuccessFully', 'success')
         }
