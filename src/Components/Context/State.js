@@ -78,11 +78,15 @@ const State = (props) => {
     }
 
     //deleted item from cart
-    const deteleItem = async (id) => {
+    const deteleItem = async (id, action) => {
         await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
             method: 'DELETE'
         })
-        setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
+        if(action === 'clear'){
+            setCartData([])
+        }else{
+            setCartData(cartdata.filter((cartdata) => cartdata.id !== id))   
+        }
     }
 
     //edit quantity into the cartdata

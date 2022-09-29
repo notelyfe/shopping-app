@@ -18,9 +18,10 @@ const Checkout = () => {
     const accept = () => {
         let arr = cartdata
         let id
+        let action = 'clear'
         for (let i = 0; i < cartdata.length; i++) {
             id = arr[i].id
-            deteleItem(id)
+            deteleItem(id, action)
         }
         setWarning(false)
         showAlert('Cart has Been Clear SuccessFully', 'success')
@@ -44,7 +45,7 @@ const Checkout = () => {
                 <table className="table my-3 checkout-data">
                     <thead className='bg-light text-center'>
                         <tr>
-                            <th scope='col'><FaTrashAlt onClick={clearCart} className='trash mt-1 ms-4 ' />Product</th>
+                            <th scope='col'><button disabled={cartdata.length <= 0} onClick={clearCart} className='rounded trash border-0 mt-1 ms-4 '><FaTrashAlt className='trash'/></button> Product</th>
                             <th scope='col'>Price</th>
                             <th scope='col'>Quantity</th>
                             <th scope='col'>Subtotal</th>

@@ -38,7 +38,8 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
     }
 
     const removeItem = () => {
-        deteleItem(id)
+        let action = 'deleteItem'
+        deteleItem(id, action)
         showAlert('Item Deleted SuccessFully', 'success')
     }
 
