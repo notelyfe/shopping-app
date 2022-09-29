@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { BsFillEmojiSmileFill, BsCartFill } from "react-icons/bs";
+import { BsFillEmojiSmileFill } from "react-icons/bs";
+import { FaCartPlus } from "react-icons/fa";
 import { ImSad2 } from "react-icons/im";
 import { Link } from 'react-router-dom'
 import Context from './Context/Context';
@@ -66,7 +67,7 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
                             type="text"
                             value={qty}
                             onChange={productQty} />
-                        <BsCartFill
+                        <FaCartPlus
                             onClick={addProduct}
                             className='cart mx-1'
                         />

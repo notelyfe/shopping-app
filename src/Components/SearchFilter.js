@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './SearchFilter.css'
 import ProductListing from './ProductListing'
-import { BiReset } from "react-icons/bi";
+import { BiReset, BiCart } from "react-icons/bi";
 import Context from './Context/Context'
 import { Link } from 'react-router-dom'
 
@@ -98,10 +98,11 @@ const SearchFilter = () => {
                             onChange={search}
                             placeholder='Search BY Name' />
                         <Link
-                            className={`btn btn-info text-light mx-1 ${(cartdata.length) <= 0 ? 'disabled' : ''}`}
+                            className={`btn p-0 btn-cart text-dark border-0 mx-1 ${(cartdata.length) <= 0 ? 'disabled' : ''}`}
                             to='/checkout'>
-                            Add To Cart
+                            <BiCart />
                         </Link>
+                        <div className={`Qty-indicator bg-info d-${cartdata.length > 0 ? 'block' : 'none'}`}>{cartdata.length}</div>
                     </div>
                 </div>
             </div>
