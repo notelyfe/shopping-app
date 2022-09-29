@@ -40,8 +40,8 @@ const State = (props) => {
         setOutFit(localType)
         setProductSize(localSize)
 
-        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}${localField !== null ? '&_sort=':''}${localField !== null ? localField : ''}${localOrder !== null ? '&_order=':''}${localOrder !== null ? localOrder : ''}`
-        
+        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}${localField !== null ? '&_sort=' : ''}${localField !== null ? localField : ''}${localOrder !== null ? '&_order=' : ''}${localOrder !== null ? localOrder : ''}`
+
         return await axios.get(url)
             .then((response) => setProductData(response.data))
     }
@@ -82,10 +82,15 @@ const State = (props) => {
         await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
             method: 'DELETE'
         })
-        if(action === 'clear'){
+        if (action === 'clear') {
             setCartData([])
+            showAlert('Cart has Been Clear SuccessFully', 'success')
+        } else if (action === 'QtyDelete') {
+            setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
+            showAlert('Item Deleted Because Quantity goes below 1', 'info')
         }else{
-            setCartData(cartdata.filter((cartdata) => cartdata.id !== id))   
+            setCartData(cartdata.filter((cartdata) => cartdata.id !== id))
+            showAlert('Item Deleted SuccessFully', 'success')
         }
     }
 

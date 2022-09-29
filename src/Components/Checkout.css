@@ -27,6 +27,9 @@
     max-height: 42%;
     background-color: white;
 }
+.qty-btn:hover{
+    background-color: lightgrey;
+}
 
 .qty {
     border: 2px solid grey;

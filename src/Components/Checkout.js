@@ -24,7 +24,6 @@ const Checkout = () => {
             deteleItem(id, action)
         }
         setWarning(false)
-        showAlert('Cart has Been Clear SuccessFully', 'success')
     }
 
     const deny = () => {

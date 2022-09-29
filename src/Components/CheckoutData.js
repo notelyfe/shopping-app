@@ -29,8 +29,9 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
     }
 
     const decQuantity = () => {
-        if (parseInt(qty) < 1) {
-            deteleItem(id)
+        if (parseInt(qty) <= 1) {
+            let action = 'QtyDelete'
+            deteleItem(id, action)
         } else {
             qty = parseInt(qty) - 1
             editQty({ id, qty, prod_image, name, price, stock })
@@ -40,7 +41,6 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
     const removeItem = () => {
         let action = 'deleteItem'
         deteleItem(id, action)
-        showAlert('Item Deleted SuccessFully', 'success')
     }
 
     return (

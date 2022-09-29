@@ -24,12 +24,16 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
     const addProduct = (e) => {
         e.preventDefault()
         if ((checked === true) && (qty !== '')) {
-            if (parseInt(qty) <= parseInt(stock)) {
+            if (parseInt(qty) <= 0) {
+                showAlert('Please Select a Valid Quantity.', 'warning')
+            }
+            else if (parseInt(qty) <= parseInt(stock)) {
                 cartDetail({ prod_image, name, price, stock, qty })
                 showAlert('Item Added to Cart Successfully', 'success')
                 setQty('')
                 setChecked(false)
-            } else {
+            }
+            else {
                 setQty(stock)
                 showAlert('We are reseting your Quantity to max Available Quantity, please click on cart again to Add', 'info')
             }
