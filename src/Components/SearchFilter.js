@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './SearchFilter.css'
 import ProductListing from './ProductListing'
 import { BiReset, BiCart } from "react-icons/bi";
@@ -19,6 +19,15 @@ const SearchFilter = () => {
         localStorage.removeItem('order')
         localStorage.removeItem('field')
     }
+
+    // const filterByType = (outfit) => {
+    //     if(outfit==='shirt'){
+    //         console.log('shirt')
+    //         fetchData(outfit, undefined)
+    //     }else{
+    //         console.log('hoodie')
+    //     }
+    // }
 
     const filterShirt = (e) => {
         e.preventDefault();
@@ -63,8 +72,8 @@ const SearchFilter = () => {
                 <div className="product-listing">
                     <div className="container filter-container mx-1 my-1">
                         <div className="dropdown mx-1">
-                            <button  className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {outFit !== null?outFit:'type'}
+                            <button className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {outFit !== null ? outFit : 'type'}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><Link className="dropdown-item" onClick={filterShirt} id='shirt' to="#">Shirt</Link></li>
@@ -72,8 +81,8 @@ const SearchFilter = () => {
                             </ul>
                         </div>
                         <div className="dropdown mx-1">
-                            <button  className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {productSize !== null?productSize:'size'}
+                            <button className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {productSize !== null ? productSize : 'size'}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><Link className="dropdown-item" onClick={small} to="#">S</Link></li>
@@ -106,7 +115,7 @@ const SearchFilter = () => {
                     </div>
                 </div>
             </div>
-            <ProductListing keyWord={keyWord}/>
+            <ProductListing keyWord={keyWord} />
         </>
     )
 }

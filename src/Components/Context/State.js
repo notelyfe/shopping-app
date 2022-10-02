@@ -65,13 +65,13 @@ const State = (props) => {
     const [cartdata, setCartData] = useState([])
 
     //add data to cart
-    const cartDetail = async (prod_image, name, price, stock, qty) => {
+    const cartDetail = async ({ prod_image, name, price, stock, qty, product_Id }) => {
         const res = await fetch('https://shopping-data-server.herokuapp.com/cartData', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(prod_image, name, price, stock, qty)
+            body: JSON.stringify({ prod_image, name, price, stock, qty, product_Id })
         });
         const data = await res.json()
         setCartData([...cartdata, data])
@@ -100,13 +100,13 @@ const State = (props) => {
     }
 
     //edit quantity into the cartdata
-    const editQty = async ({ prod_image, name, price, stock, qty, id }) => {
+    const editQty = async ( {prod_image, product_Id, name, price, stock, qty, id} ) => {
         const res = await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({ prod_image, name, price, stock, qty, id })
+            body: JSON.stringify({ prod_image, product_Id, name, price, stock, qty, id })
         });
         const json = await res.json();
 

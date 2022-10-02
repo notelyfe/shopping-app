@@ -17,7 +17,7 @@ const Alert = () => {
                     top: '52px',
                     maxWidth: '40%',
                     zIndex: '1',
-                    left: '25%'
+                    left: '30%'
                 }}>
 
                 {(alert.type === 'success') ? <AiFillCheckCircle

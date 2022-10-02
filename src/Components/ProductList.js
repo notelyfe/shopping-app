@@ -5,17 +5,17 @@ import { ImSad2 } from "react-icons/im";
 import { Link } from 'react-router-dom'
 import Context from './Context/Context';
 
-const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
+const ProductList = ({ product_Id, prod_image, name, color, stock, price, size, id }) => {
 
     const context = useContext(Context)
-    const { cartDetail, showAlert } = context
+    const { cartDetail, showAlert, cartdata, editQty } = context
 
     const productQty = (e) => {
         e.preventDefault()
         setQty(e.target.value)
     }
 
-    const [qty, setQty] = useState('')
+    let [qty, setQty] = useState('')
 
     const bthChecked = (e) => {
         setChecked(e.target.checked)
@@ -29,8 +29,26 @@ const ProductList = ({ id, prod_image, name, color, stock, price, size }) => {
                 showAlert('Please Select a Valid Quantity.', 'warning')
             }
             else if (parseInt(qty) <= parseInt(stock)) {
-                cartDetail({ prod_image, name, price, stock, qty })
-                showAlert('Item Added to Cart Successfully', 'success')
+                let arr = cartdata
+                if (arr.length <= 0) {
+                    cartDetail({ prod_image, product_Id, name, price, stock, qty })
+                    showAlert('Item Added to Cart Successfully', 'success')
+                }
+                else {
+                    let i = 0
+                    let prodID = []
+                    arr.map((item) => {
+                        prodID[i] = item.product_Id
+                        i++
+                    })
+                    if (prodID.includes(product_Id)) {
+                        showAlert('Item Already Exist into the cart, Please increase the quantity from there', 'warning')
+                    }
+                    else {
+                        cartDetail({ prod_image, product_Id, name, price, stock, qty })
+                        showAlert('Item Added to Cart Successfully', 'success')
+                    }
+                }
                 setQty('')
                 setChecked(false)
             }

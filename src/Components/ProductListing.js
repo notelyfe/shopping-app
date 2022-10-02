@@ -103,6 +103,7 @@ const ProductListing = ({ keyWord }) => {
                         color={item.color}
                         stock={item.stock}
                         price={item.price}
+                        product_Id={item.product_Id}
                     />
                 }))}
             </table>
