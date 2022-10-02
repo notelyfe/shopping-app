@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './SearchFilter.css'
 import ProductListing from './ProductListing'
 import { BiReset, BiCart } from "react-icons/bi";
@@ -20,45 +20,28 @@ const SearchFilter = () => {
         localStorage.removeItem('field')
     }
 
-    // const filterByType = (outfit) => {
-    //     if(outfit==='shirt'){
-    //         console.log('shirt')
-    //         fetchData(outfit, undefined)
-    //     }else{
-    //         console.log('hoodie')
-    //     }
-    // }
-
-    const filterShirt = (e) => {
-        e.preventDefault();
-        const outfit = 'shirt'
-        fetchData(outfit, undefined)
+    const handelToggleFilterType = (e) => {
+        e.preventDefault()
+        typeDiv === true ? setTypeDiv(false) : setTypeDiv(true)
     }
-    const filterHoodie = (e) => {
-        e.preventDefault();
-        const outfit = 'hoodie'
+    const [typeDiv, setTypeDiv] = useState(false)
+
+    const handelToggleFilterSize = (e) => {
+        e.preventDefault()
+        sizeDiv === true ? setSizeDiv(false) : setSizeDiv(true)
+    }
+    const [sizeDiv, setSizeDiv] = useState(false)
+
+    const filterByType = (e) => {
+        let outfit = e.target.value
         fetchData(outfit, undefined)
+        setTypeDiv(false)
     }
 
-    const small = (e) => {
-        e.preventDefault()
-        const size = 'small'
+    const filterBySize = (e) => {
+        let size = e.target.value
         fetchData(undefined, size)
-    }
-    const medium = (e) => {
-        e.preventDefault()
-        const size = 'medium'
-        fetchData(undefined, size)
-    }
-    const large = (e) => {
-        e.preventDefault()
-        const size = 'large'
-        fetchData(undefined, size)
-    }
-    const extraLarge = (e) => {
-        e.preventDefault()
-        const size = 'extralarge'
-        fetchData(undefined, size)
+        setSizeDiv(false)
     }
 
     const search = (e) => {
@@ -72,24 +55,27 @@ const SearchFilter = () => {
                 <div className="product-listing">
                     <div className="container filter-container mx-1 my-1">
                         <div className="dropdown mx-1">
-                            <button className="btn btn-light btn-filter text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {outFit !== null ? outFit : 'type'}
+                            <button
+                                onClick={handelToggleFilterType}
+                                className="btn btn-light btn-filter text-uppercase dropdown-toggle"
+                                type="button">
+                                {outFit !== null ? outFit : 'Type'}
                             </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><Link className="dropdown-item" onClick={filterShirt} id='shirt' to="#">Shirt</Link></li>
-                                <li><Link className="dropdown-item" onClick={filterHoodie} id='hoodie' to="#">Hoodie</Link></li>
-                            </ul>
+                            <div className={`bg-light d-${typeDiv === true ? 'flex' : 'none'} container-filter rounded type-container`}>
+                                <button onClick={filterByType} value='shirt' className="btn border-0 btn-type">Shirt</button>
+                                <button onClick={filterByType} value='hoodie' className="btn border-0 btn-type">Hoodie</button>
+                            </div>
                         </div>
                         <div className="dropdown mx-1">
-                            <button className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button onClick={handelToggleFilterSize} className="btn btn-light text-uppercase btn-filter-size dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 {productSize !== null ? productSize : 'size'}
                             </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><Link className="dropdown-item" onClick={small} to="#">S</Link></li>
-                                <li><Link className="dropdown-item" onClick={medium} to="#">M</Link></li>
-                                <li><Link className="dropdown-item" onClick={large} to="#">L</Link></li>
-                                <li><Link className="dropdown-item" onClick={extraLarge} to="#">XL</Link></li>
-                            </ul>
+                            <div className={`size-container bg-light d-${sizeDiv === true ? 'flex' : 'none'} container-filter rounded`}>
+                                <button onClick={filterBySize} value='small' className="btn btn-type border-0">S</button>
+                                <button onClick={filterBySize} value='medium' className="btn btn-type border-0">M</button>
+                                <button onClick={filterBySize} value='large' className="btn btn-type border-0">L</button>
+                                <button onClick={filterBySize} value='extralarge' className="btn btn-type border-0">XL</button>
+                            </div>
                         </div>
 
                         <button

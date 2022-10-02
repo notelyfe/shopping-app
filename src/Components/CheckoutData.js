@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context/Context';
 
-const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
+const CheckoutData = ({ id, prod_image, name, price, qty, stock, product_Id }) => {
 
     const context = useContext(Context)
     const { deteleItem, editQty, showAlert } = context
@@ -24,7 +24,7 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
     const incQuantity = () => {
         qty = parseInt(qty) + 1
         if (qty <= stock) {
-            editQty({ id, qty, prod_image, name, price, stock })
+            editQty({ id, qty, prod_image, name, price, stock, product_Id })
             setTimeout(() => {
                 showAlert('Response resieve please wait for a second', 'info')
             }, 10);
@@ -42,7 +42,7 @@ const CheckoutData = ({ id, prod_image, name, price, qty, stock }) => {
             deteleItem(id, action)
         } else {
             qty = parseInt(qty) - 1
-            editQty({ id, qty, prod_image, name, price, stock })
+            editQty({ id, qty, prod_image, name, price, stock, product_Id })
             setTimeout(() => {
                 showAlert('Response resieve please wait for a second', 'info')
             }, 10);

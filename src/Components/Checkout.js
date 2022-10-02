@@ -9,7 +9,7 @@ import CheckoutPay from './CheckoutPay';
 const Checkout = () => {
 
     const context = useContext(Context)
-    const { cartdata, deteleItem, showAlert } = context
+    const { cartdata, deteleItem } = context
 
     const clearCart = () => {
         setWarning(true)
@@ -53,6 +53,7 @@ const Checkout = () => {
                     {(cartdata.map((data) => {
                         return <CheckoutData length={cartdata.length} key={data.id}
                             id={data.id}
+                            product_Id= {data.product_Id}
                             prod_image={data.prod_image}
                             name={data.name}
                             price={data.price}

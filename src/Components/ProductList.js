@@ -8,7 +8,7 @@ import Context from './Context/Context';
 const ProductList = ({ product_Id, prod_image, name, color, stock, price, size, id }) => {
 
     const context = useContext(Context)
-    const { cartDetail, showAlert, cartdata, editQty } = context
+    const { cartDetail, showAlert, cartdata } = context
 
     const productQty = (e) => {
         e.preventDefault()
@@ -29,25 +29,18 @@ const ProductList = ({ product_Id, prod_image, name, color, stock, price, size, 
                 showAlert('Please Select a Valid Quantity.', 'warning')
             }
             else if (parseInt(qty) <= parseInt(stock)) {
-                let arr = cartdata
-                if (arr.length <= 0) {
-                    cartDetail({ prod_image, product_Id, name, price, stock, qty })
-                    showAlert('Item Added to Cart Successfully', 'success')
+                let i = 0
+                let prodID = []
+                cartdata.map((item) => {
+                    prodID[i] = item.product_Id
+                    i++
+                })
+                if (prodID.includes(product_Id)) {
+                    showAlert('Item Already Exist into the cart, Please goto the cart to increase the quantity.', 'warning')
                 }
                 else {
-                    let i = 0
-                    let prodID = []
-                    arr.map((item) => {
-                        prodID[i] = item.product_Id
-                        i++
-                    })
-                    if (prodID.includes(product_Id)) {
-                        showAlert('Item Already Exist into the cart, Please increase the quantity from there', 'warning')
-                    }
-                    else {
-                        cartDetail({ prod_image, product_Id, name, price, stock, qty })
-                        showAlert('Item Added to Cart Successfully', 'success')
-                    }
+                    cartDetail({ prod_image, product_Id, name, price, stock, qty })
+                    showAlert('Item Added to Cart Successfully', 'success')
                 }
                 setQty('')
                 setChecked(false)
