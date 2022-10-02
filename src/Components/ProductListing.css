@@ -1,24 +1,23 @@
 .uparrow{
     position: relative;
-    right: -14px;
-    top: -7px;
+    right: -15px;
+    top: 0px;
     cursor: pointer;
-    transform:  rotate(180deg);
-    font-size: 18px;
+    font-size: 18px !important;
 }
 .uparrow:hover{
-    color: red;
+    color: red !important;
 }
 
 .downarrow{
     position: relative;
-    right: 4px;
-    top: 6px;
+    right: 7px;
+    top: 0px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 18px !important;
 }
 .downarrow:hover{
-    color: red;
+    color: red !important;
 }
 
 .image-data{

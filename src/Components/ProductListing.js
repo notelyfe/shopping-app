@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import ProductList from './ProductList';
-import { AiFillCaretDown } from "react-icons/ai";
 import './ProductListing.css'
 import Context from './Context/Context'
 
@@ -18,39 +17,23 @@ const ProductListing = ({ keyWord }) => {
         }
     })
 
-    const SortByPriceAcs = () => {
+    const SortByPrice = (e) => {
+        let order = e.target.value
         let field = 'price'
-        let order = 'asc'
-        fetchData(field, order)
-    }
-    const SortByPriceDesc = () => {
-        let field = 'price'
-        let order = 'desc'
         fetchData(field, order)
     }
 
-    const SortByNameAcs = () => {
+    const SortByName = (e) => {
         let field = 'name'
-        let order = 'asc'
-        fetchData(field, order)
-    }
-    const SortByNameDesc = () => {
-        let field = 'name'
-        let order = 'desc'
+        let order = e.target.value
         fetchData(field, order)
     }
 
-    const SortBySizeAsc = () => {
+    const SortBySize = (e) => {
         let field = 'size'
-        let order = 'asc'
+        let order = e.target.value
         fetchData(field, order)
     }
-    const SortBySizeDesc = () => {
-        let field = 'size'
-        let order = 'desc'
-        fetchData(field, order)
-    }
-
     return (
         <div className='container table-container my-3'>
             <table className='table '>
@@ -58,21 +41,21 @@ const ProductListing = ({ keyWord }) => {
                     <tr>
                         <th scope='col' className='bg-light'>Image</th>
 
-                        <th scope='col' className='bg-light'>Name
-                            <abbr title="Sort item in Ascending order">
-                                <AiFillCaretDown onClick={SortByNameAcs} className='uparrow' />
-                            </abbr>
-                            <abbr title="Sort item in Descending order">
-                                <AiFillCaretDown onClick={SortByNameDesc} className='downarrow' />
-                            </abbr>
+                        <th scope='col' className='bg-light' >Name
+                                <abbr title="Sort item in Ascending order">
+                                    <button onClick={SortByName} value='asc' className="btn border-0 p-0 fw-bolder uparrow">&#8638;</button>
+                                </abbr>
+                                <abbr title="Sort item in Descending order">
+                                    <button onClick={SortByName} value='desc' className="btn border-0 p-0 fw-bolder downarrow">&#8643;</button>
+                                </abbr>
                         </th>
 
                         <th scope='col' className='bg-light'>Size
                             <abbr title="Sort item in Ascending order">
-                                <AiFillCaretDown onClick={SortBySizeDesc} className='uparrow' />
+                                <button onClick={SortBySize} value='desc' className="btn border-0 p-0 fw-bolder uparrow">&#8638;</button>
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <AiFillCaretDown onClick={SortBySizeAsc} className='downarrow' />
+                                <button onClick={SortBySize} value='asc' className="btn border-0 p-0 fw-bolder downarrow">&#8643;</button>
                             </abbr>
                         </th>
 
@@ -80,14 +63,14 @@ const ProductListing = ({ keyWord }) => {
 
                         <th scope='col' className='bg-light'>Stock </th>
 
-                        <th scope='col' className='bg-light'>Stock Left</th>
+                        <th scope='col' className='bg-light'style={{ width: '100px'}}>Stock Left</th>
 
-                        <th scope='col' className='bg-light'>Price
+                        <th scope='col' className='bg-light' style={{ width: '90px'}}>Price 
                             <abbr title="Sort item in Ascending order">
-                                <AiFillCaretDown onClick={SortByPriceAcs} className='uparrow' />
+                                <button onClick={SortByPrice} value='asc' className="btn border-0 p-0 fw-bolder uparrow">&#8638;</button>
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <AiFillCaretDown onClick={SortByPriceDesc} className='downarrow' />
+                                <button onClick={SortBySize} value='desc' className="btn border-0 p-0 fw-bolder downarrow">&#8643;</button>
                             </abbr>
                         </th>
 
