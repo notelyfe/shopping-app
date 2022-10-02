@@ -70,7 +70,7 @@ const ProductListing = ({ keyWord }) => {
                                 <button onClick={SortByPrice} value='asc' className="btn border-0 p-0 fw-bolder uparrow">&#8638;</button>
                             </abbr>
                             <abbr title="Sort item in Descending order">
-                                <button onClick={SortBySize} value='desc' className="btn border-0 p-0 fw-bolder downarrow">&#8643;</button>
+                                <button onClick={SortByPrice} value='desc' className="btn border-0 p-0 fw-bolder downarrow">&#8643;</button>
                             </abbr>
                         </th>
 

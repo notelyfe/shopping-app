@@ -69,7 +69,7 @@ const ProductList = ({ product_Id, prod_image, name, color, stock, price, size, 
                 <th className='text-capitalize'>{color}</th>
                 <th className={` text-${(stock !== 0) ? 'success' : 'danger'}`}>{stock !== 0 ? <BsFillEmojiSmileFill className='mx-1' /> : <ImSad2 className='mx-1' />}{stock !== 0 ? 'In Stock' : 'Out Of Stock'}</th>
                 <th>{stock}</th>
-                <th >₹{price}</th>
+                <th >₹{price}.00</th>
                 <th >
                     <div className="buy-item">
                         <input
