@@ -8,16 +8,17 @@ import { Link } from 'react-router-dom'
 const SearchFilter = () => {
 
     const context = useContext(Context)
-    const { fetchData, handelReset, outFit, productSize, cartdata, showAlert } = context;
+    const { productData, cartdata, showAlert, setProductData, fetchData } = context;
 
     const reset = (e) => {
         setKeyWord('')
-        handelReset()
+        setProductData([])
+        fetchData()
+        setOutFit(null)
+        setProductSize(null)
+        setTypeDiv(false)
+        setSizeDiv(false)
         showAlert('Data Reset Success', 'success')
-        localStorage.removeItem('type')
-        localStorage.removeItem('size')
-        localStorage.removeItem('order')
-        localStorage.removeItem('field')
     }
 
     const handelToggleFilterType = (e) => {
@@ -33,16 +34,38 @@ const SearchFilter = () => {
     const [sizeDiv, setSizeDiv] = useState(false)
 
     const filterByType = (e) => {
-        let outfit = e.target.value
-        fetchData(outfit, undefined)
+        let outfit = e.target.value;
+        let filterProduct = []
+        let i = 0
+        setOutFit(outfit)
         setTypeDiv(false)
+
+        productData.forEach(element => {
+            if (element.type === outfit) {
+                filterProduct[i] = element;
+                i++
+            }
+        });
+        setProductData(filterProduct)
     }
+    const [outFit, setOutFit] = useState('type')
 
     const filterBySize = (e) => {
         let size = e.target.value
-        fetchData(undefined, size)
+        let filterProduct = []
+        let i = 0
+        setProductSize(size)
         setSizeDiv(false)
+
+        productData.forEach(element => {
+            if (element.size === size) {
+                filterProduct[i] = element;
+                i++
+            }
+        });
+        setProductData(filterProduct)
     }
+    const [productSize, setProductSize] = useState('Size')
 
     const search = (e) => {
         setKeyWord(e.target.value)

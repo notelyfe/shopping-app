@@ -7,58 +7,21 @@ const State = (props) => {
     const [productData, setProductData] = useState([])
 
     useEffect(() => {
-        fetchData();
-        handelReset()
         fetchCartData()
+        fetchData()
     }, [])
 
-    const fetchData = async (field1, field2) => {
-        let typeX = []
-        let sizeX = []
-        let para1 = []
-        let para2 = []
+    const fetchData = async () => {
 
-        if ((field2 === 'asc') || (field2 === 'desc')) {
-            para1 = field1;
-            para2 = field2;
-            localStorage.setItem('field', JSON.stringify(para1))
-            localStorage.setItem('order', JSON.stringify(para2))
-        }
-        else if (field1 !== undefined) {
-            typeX = field1
-            localStorage.setItem('type', JSON.stringify(typeX))
-
-        } else if (field2 !== undefined) {
-            sizeX = field2
-            localStorage.setItem('size', JSON.stringify(sizeX))
-        }
-
-        let localType = JSON.parse(localStorage.getItem('type'))
-        let localSize = JSON.parse(localStorage.getItem('size'))
-        let localField = JSON.parse(localStorage.getItem('field'))
-        let localOrder = JSON.parse(localStorage.getItem('order'))
-        setOutFit(localType)
-        setProductSize(localSize)
-
-        const url = `https://shopping-data-server.herokuapp.com/productData?${localType !== null ? 'type=' : ''}${localType !== null ? localType : ''}${localSize !== null ? '&size=' : ''}${localSize !== null ? localSize : ''}${localField !== null ? '&_sort=' : ''}${localField !== null ? localField : ''}${localOrder !== null ? '&_order=' : ''}${localOrder !== null ? localOrder : ''}`
+        const url = `https://shopping-app-3424.onrender.com`
 
         return await axios.get(url)
             .then((response) => setProductData(response.data))
     }
-    const [outFit, setOutFit] = useState('type')
 
-    const [productSize, setProductSize] = useState('Size')
-
-    const handelReset = async () => {
-        setOutFit('type')
-        setProductSize('Size')
-        const url = 'https://shopping-data-server.herokuapp.com/productData'
-        return await axios.get(url)
-            .then((response) => setProductData(response.data))
-    }
     //fetch cart data
     const fetchCartData = async () => {
-        const url = "https://shopping-data-server.herokuapp.com/cartData"
+        const url = "https://shopping-app-3424.onrender.com/cartData"
         return await axios.get(url)
             .then((response) => setCartData(response.data))
     }
@@ -66,7 +29,7 @@ const State = (props) => {
 
     //add data to cart
     const cartDetail = async ({ prod_image, name, price, stock, qty, product_Id }) => {
-        const res = await fetch('https://shopping-data-server.herokuapp.com/cartData', {
+        const res = await fetch('https://shopping-app-3424.onrender.com/cartData', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -79,7 +42,7 @@ const State = (props) => {
 
     //deleted item from cart
     const deteleItem = async (id, action) => {
-        await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
+        await fetch(`https://shopping-app-3424.onrender.com/cartData/${id}`, {
             method: 'DELETE'
         })
         if (action === 'clear') {
@@ -101,7 +64,7 @@ const State = (props) => {
 
     //edit quantity into the cartdata
     const editQty = async ( {prod_image, product_Id, name, price, stock, qty, id} ) => {
-        const res = await fetch(`https://shopping-data-server.herokuapp.com/cartData/${id}`, {
+        const res = await fetch(`https://shopping-app-3424.onrender.com/cartData/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -136,11 +99,9 @@ const State = (props) => {
     return (
         <Context.Provider
             value={{
-                productData,
                 fetchData,
-                handelReset,
-                outFit,
-                productSize,
+                setProductData,
+                productData,
                 cartDetail,
                 cartdata,
                 deteleItem,
