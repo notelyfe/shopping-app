@@ -13,7 +13,7 @@ const State = (props) => {
 
     const fetchData = async () => {
 
-        const url = `https://shopping-app-3424.onrender.com`
+        const url = `https://shopping-app-3424.onrender.com/productData`
 
         return await axios.get(url)
             .then((response) => setProductData(response.data))
