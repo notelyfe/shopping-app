@@ -11,9 +11,11 @@ const State = (props) => {
         fetchData()
     }, [])
 
+    let host = "https://data-server-g6pq.onrender.com"
+
     const fetchData = async () => {
 
-        const url = `https://shopping-app-3424.onrender.com/productData`
+        const url = `${host}/productData`
 
         return await axios.get(url)
             .then((response) => setProductData(response.data))
@@ -21,7 +23,7 @@ const State = (props) => {
 
     //fetch cart data
     const fetchCartData = async () => {
-        const url = "https://shopping-app-3424.onrender.com/cartData"
+        const url = `${host}/cartData`
         return await axios.get(url)
             .then((response) => setCartData(response.data))
     }
@@ -29,7 +31,7 @@ const State = (props) => {
 
     //add data to cart
     const cartDetail = async ({ prod_image, name, price, stock, qty, product_Id }) => {
-        const res = await fetch('https://shopping-app-3424.onrender.com/cartData', {
+        const res = await fetch(`${host}/cartData`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -42,7 +44,7 @@ const State = (props) => {
 
     //deleted item from cart
     const deteleItem = async (id, action) => {
-        await fetch(`https://shopping-app-3424.onrender.com/cartData/${id}`, {
+        await fetch(`${host}/cartData/${id}`, {
             method: 'DELETE'
         })
         if (action === 'clear') {
@@ -64,7 +66,7 @@ const State = (props) => {
 
     //edit quantity into the cartdata
     const editQty = async ( {prod_image, product_Id, name, price, stock, qty, id} ) => {
-        const res = await fetch(`https://shopping-app-3424.onrender.com/cartData/${id}`, {
+        const res = await fetch(`${host}/cartData/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
